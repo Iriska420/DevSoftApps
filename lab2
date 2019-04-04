@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class Root {
+
+    /**
+     * This method returns result of first calculations.
+     * Here we use constant values:
+     * a = 4.26;
+     * b = 1.71;
+     * c = 3.86;
+     * x = 2.76;
+     * @return formula in Double
+     */
+    private static Double first()
+    {
+        final Double a = 4.26;
+        final Double b = 1.71;
+        final Double c = 3.86;
+        final Double x = 2.76;
+        
+        // Start calculating
+        
+        Double p1 = Math.pow(Math.exp(1), b + x);
+        Double p2 = Math.sin((x * x) + (a * a));
+        Double p3 = p1 * p2;
+        Double p4 = Math.sqrt((a * (Math.pow(x, 3))) + c);
+        Double y = p3 / p4;
+        
+        // End calculating
+        
+        return y;
+    }
+    
+    /**
+     * This method returns result of second calculations.
+     * Here we use converted arguments from command line.
+     * @param args
+     * @return formula in Double converted from String[] args
+     */
+    private static Double second(String[] args)
+    {
+        final Double a = Double.parseDouble(args[0]);
+        final Double b = Double.parseDouble(args[1]);
+        final Double c = Double.parseDouble(args[2]);
+        final Double x = Double.parseDouble(args[3]);
+        
+        // Start calculating
+        
+        Double p1 = Math.pow(Math.exp(1), b + x);
+        Double p2 = Math.sin((x * x) + (a * a));
+        Double p3 = p1 * p2;
+        Double p4 = Math.sqrt((a * (Math.pow(x, 3))) + c);
+        Double y = p3 / p4;
+        
+        // End calculating
+        
+        return y;
+    }
+    
+    private static Scanner sc;
+    
+    /**
+     * This method returns result of third calculations.
+     * @return formula in Double
+     */
+    private static Double third()
+    {
+        sc = new Scanner(System.in);
+        System.out.print("Print a: ");
+        final Double a = sc.nextDouble();
+        System.out.print("Print b: ");
+        final Double b = sc.nextDouble();
+        System.out.print("Print c: ");
+        final Double c = sc.nextDouble();
+        System.out.print("Print x: ");
+        final Double x = sc.nextDouble();
+        
+        // Start calculating
+        
+        Double p1 = Math.pow(Math.exp(1), b + x);
+        Double p2 = Math.sin((x * x) + (a * a));
+        Double p3 = p1 * p2;
+        Double p4 = Math.sqrt((a * (Math.pow(x, 3))) + c);
+        Double y = p3 / p4;
+        
+        // End calculating
+        return y;
+    }
+    
+    public static void main(String[] args) {
+        
+        // first part
+        System.out.println("Result of first part: " + first());
+        
+        // second part
+        System.out.println("Result of second part: " + second(args));
+        
+        // third part
+        System.out.println("Result of third part: " + third());
+    }
+    
+}
