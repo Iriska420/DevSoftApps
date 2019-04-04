@@ -1,0 +1,66 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+class GUI extends JFrame
+{
+    private static final JButton button = new JButton("Calculate");
+    private static JTextField text1 = new JTextField("");
+    private static JTextField text2 = new JTextField("");
+    private static JTextField text3 = new JTextField("");
+    private static JTextField text4 = new JTextField("");
+    private final JLabel label1 = new JLabel("Parallelepiped\'s width");
+    private final JLabel label2 = new JLabel("Parallelepiped\'s length");
+    private final JLabel label3 = new JLabel("Parallelepiped\'s height");
+    private final JLabel label4 = new JLabel("Object\'s volume");
+    
+    public GUI() {
+        super("Practice 1");
+        this.setBounds(600, 300, 600, 300);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        GUI.text1.setPreferredSize(new Dimension(60, 10));
+        GUI.text2.setPreferredSize(new Dimension(60, 10));
+        GUI.text3.setPreferredSize(new Dimension(60, 10));
+        GUI.text4.setPreferredSize(new Dimension(60, 10));
+        
+        Container frame = this.getContentPane();
+        frame.setLayout(new GridLayout(9, 3));
+        frame.add(label1);
+        frame.add(text1);
+        frame.add(label2);
+        frame.add(text2);
+        frame.add(label3);
+        frame.add(text3);
+        frame.add(label4);
+        frame.add(text4);
+        
+        button.addActionListener(new ButtonEventListener());
+        frame.add(button);
+    }
+
+    private static class ButtonEventListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            double value1 = Double.parseDouble(text1.getText());
+            double value2 = Double.parseDouble(text2.getText());
+            double value3 = Double.parseDouble(text3.getText());
+            double volume = Double.parseDouble(text4.getText());
+            if(value1 * value2 * value3 < volume)
+                JOptionPane.showMessageDialog(null, "Floating object did sink", "Result", JOptionPane.PLAIN_MESSAGE);
+            else if(value1 * value2 * value3 >= volume)
+                JOptionPane.showMessageDialog(null, "Floating object did not sink", "Result", JOptionPane.PLAIN_MESSAGE);
+            
+        }
+    }
+}
+
+public class Root 
+{
+    public static void main(String[] args) 
+    {
+        GUI gui = new GUI();
+        gui.setVisible(true);
+    }
+}
