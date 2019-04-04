@@ -1,0 +1,59 @@
+function calculate(a,b,c,x){
+    return (Math.sin(Math.pow(x,2) + Math.pow(a,2)) * Math.exp(b+x)) / Math.sqrt(a * Math.pow(x,3) + c);
+}
+function calculate_range(a,b,c,x,x_start, x_end, step){
+    if(x_start > x_end){
+        alert("Неверно введены границы х");
+        return;
+    }
+    var text_box = document.getElementById("table");
+    text_box.value = "a\tb\tc\tx\ty\t\n";
+
+    for(var i = x_start; i <= x_end; i += step){
+        text_box.value += a + '\t' + b + '\t' + c + '\t' + i + '\t' + calculate(a,b,c,i) + "\t\n";
+    }
+}
+function calculate_table(){
+    elements = []
+    elements.push(document.getElementById("a").value);
+    elements.push(document.getElementById("b").value);
+    elements.push(document.getElementById("c").value);
+    elements.push(document.getElementById("x").value);
+    elements.push(document.getElementById("x_start").value);
+    elements.push(document.getElementById("x_end").value);
+    elements.push(document.getElementById("step").value);
+
+    floats = []
+    for(var i = 0; i < elements.length; i++){
+        var float_value = parseFloat(elements[i]);
+        if(isNaN(float_value)){
+            alert("Ошибка ввода в поле №" + (i + 1));
+            return;
+        }else{
+            floats.push(float_value);
+        }
+    }
+    
+    calculate_range(floats[0], floats[1], floats[2], floats[3], floats[4], floats[5], floats[6]);
+}
+function calculate_onclick(){
+    elements = []
+    elements.push(document.getElementById("a").value);
+    elements.push(document.getElementById("b").value);
+    elements.push(document.getElementById("c").value);
+    elements.push(document.getElementById("x").value);
+
+    floats = []
+    for(var i = 0; i < elements.length; i++){
+        var float_value = parseFloat(elements[i]);
+        if(isNaN(float_value)){
+            alert("Ошибка ввода в поле №" + (i + 1));
+            return;
+        }else{
+            floats.push(float_value);
+        }
+    }
+
+    var result = calculate(floats[0], floats[1], floats[2], floats[3]);
+    document.getElementById("y").value = result;
+}
